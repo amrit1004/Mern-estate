@@ -53,8 +53,8 @@ export default function Profile() {
             ''
           )}
         </p>
-        <input type="text" placeholder='username' id='username' className='p-3 border rounded-lg'  />
-        <input type="email" placeholder='email' id='email' className='p-3 border rounded-lg'  />
+        <input type="text" placeholder='username' id='username' className='p-3 border rounded-lg'defaultValue={currentUser.username}/>
+        <input type="email" placeholder='email' id='email' className='p-3 border rounded-lg' defaultValue={currentUser.email}/>
         <input type="text" placeholder='password' id='password' className='p-3 border rounded-lg'  />
         <button className='p-3 text-white uppercase rounded-lg bg-slate-700 hover:opacity-95 disabled:opacity-80'>update</button>
 
