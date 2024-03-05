@@ -19,6 +19,7 @@ export default function SignIn() {
     try {
       dispatch(signInStart());
       const res = await fetch('http://localhost:3000/api/auth/signin', {
+        credentials: "include" ,
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -37,6 +38,7 @@ export default function SignIn() {
       signInFailure(error.message);
     }
   };
+  
   return (
     <div className='max-w-lg p-3 mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>Sign In</h1>
@@ -57,10 +59,10 @@ export default function SignIn() {
         />
 
         <button
-          disabled={loading}
+          disabled ={loading}
           className='p-3 text-white uppercase rounded-lg bg-slate-700 hover:opacity-95 disabled:opacity-80'
         >
-          {loading ? 'Loading...' : 'Sign In'}
+         {loading ? 'Loading...' : 'Sign In'}
         </button>
        <OAuth/>
       </form>

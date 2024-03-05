@@ -8,11 +8,12 @@ import cookieParser from "cookie-parser"
 dotenv.config();
 const app = express()
 app.use(cors({
-  origin: '*',
-  credentials: true
-}))
-app.use(express.json());
+  origin: 'http://localhost:5173',
+  credentials: true,  // Enable credentials (cookies, authorization headers, etc.)
+}));
+
 app.use(cookieParser());
+app.use(express.json());
 const port = 3000
 mongoose
   .connect(process.env.MONGO)

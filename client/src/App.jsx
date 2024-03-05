@@ -5,8 +5,10 @@ import About from "./pages/About"
 import Profile from "./pages/Profile"
 import Home from "./pages/Home"
 import Header from "./components/Header"
+import axios from "axios"
 import PrivateRoute from "./components/PrivateRoute"
 function App() {
+  axios.defaults.withCredentials = true;
   return (
     <>
      <BrowserRouter>
