@@ -7,6 +7,7 @@ import Home from "./pages/Home"
 import Header from "./components/Header"
 import axios from "axios"
 import PrivateRoute from "./components/PrivateRoute"
+import CreateListing from "./pages/CreateListing"
 function App() {
   axios.defaults.withCredentials = true;
   return (
@@ -19,7 +20,8 @@ function App() {
       <Route path = "/sign-up" element = {<Signup/>} />
       <Route path = "/about" element = {<About/>} />
       <Route element ={<PrivateRoute/>}/>
-      <Route path = "/profile" element = {<Profile/>} />
+       <Route path = "/profile" element = {<Profile/>} />
+       <Route path = "/create-listing" element = {<CreateListing/>} />
      </Routes>
      </BrowserRouter>
     </>

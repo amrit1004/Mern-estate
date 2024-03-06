@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   getDownloadURL,
   getStorage,
@@ -184,6 +184,7 @@ export default function Profile() {
           >
             {loading ? 'Loading...' : 'Update'}
           </button>
+          <Link className='p-3 text-center text-white uppercase bg-green-700 rounded-lg hover:opacity-95' to = {"/create-listing"}>Create Listing</Link>
         </form>
       ) : (
         <div className='text-center'>
