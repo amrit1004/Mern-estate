@@ -14,7 +14,7 @@ export default function OAuth() {
 
       const result = await signInWithPopup(auth, provider);
 
-      const res = await fetch('http://localhost:3000/api/auth/google', {
+      const res = await fetch('http://localhost:3000/api/auth/google', { credentials : "include" ,
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ export default function OAuth() {
     <button
       onClick={handleGoogleClick}
       type='button'
-      className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
+      className='p-3 text-white uppercase bg-red-700 rounded-lg hover:opacity-95'
     >
       Continue with google
     </button>

@@ -29,6 +29,9 @@ export default function Profile() {
   const [fileUploadError, setFileUploadError] = useState(false);
   const [formData, setFormData] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [showListingError , setShowListingError] = useState(false)
+  const [userListings, setUserListings] = useState([]);
+  console.log(userListings);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -136,7 +139,42 @@ export default function Profile() {
        dispatch(deleteUserFailure(error.message))
     }
   }
+  const handleShowListings = async () => {
+    try {
+      setShowListingError(false);
+      const res = await fetch(`http://localhost:3000/api/user/listings/${currentUser._id}` ,{
+        credentials : 'include' ,
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        setShowListingError(true);
+        return;
+      }
 
+      setUserListings(data);
+    } catch (error) {
+      setShowListingError(true);
+    }
+  };
+  const handleListingDelete = async (listingId) => {
+    try {
+      const res = await fetch(`http://localhost:3000/api/listing/delete/${listingId}`, {
+        credentials :"include" ,
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        console.log(data.message);
+        return;
+      }
+
+      setUserListings((prev) =>
+        prev.filter((listing) => listing._id !== listingId)
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <div className='max-w-lg p-3 mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
@@ -203,6 +241,52 @@ export default function Profile() {
       )}
       <p className='text-red-700'>{error ? error : '' }</p>
       <p className='mt-5 text-green-700'>{updateSuccess ? 'User is updated successfully' : ''}</p>
+      <button  onClick ={handleShowListings} className='w-full text-green-700'>Show Listings</button>
+      <p className='mt-5 text-red-700'>
+        {showListingError ? 'Error showing listings' : ''}
+      </p>
+      
+      {userListings && userListings.length > 0 && (
+        <div className='flex flex-col gap-4'>
+          <h1 className='text-2xl font-semibold text-center mt-7'>
+            Your Listings
+          </h1>
+          {userListings.map((listing) => (
+            <div
+              key={listing._id}
+              className='flex items-center justify-between gap-4 p-3 border rounded-lg'
+            >
+              <Link to={`/listing/${listing._id}`}>
+                <img
+                  src={listing.imageUrls[0]}
+                  alt='listing cover'
+                  className='object-contain w-16 h-16'
+                />
+              </Link>
+              <Link
+                className='flex-1 font-semibold truncate text-slate-700 hover:underline'
+                to={`/listing/${listing._id}`}
+              >
+                <p>{listing.name}</p>
+              </Link>
+
+              <div className='flex flex-col item-center'>
+                <button
+                  onClick={() => handleListingDelete(listing._id)}
+                  className='text-red-700 uppercase'
+                >
+                  Delete
+                </button>
+                <Link to={`/update-listing/${listing._id}`}>
+                  <button className='text-green-700 uppercase'>Edit</button>
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      
     </div>
   );
 }
