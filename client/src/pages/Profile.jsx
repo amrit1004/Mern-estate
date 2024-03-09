@@ -88,7 +88,7 @@ export default function Profile() {
     e.preventDefault();
     try {
       dispatch(updateUserStart());
-      const res = await fetch(`http://localhost:3000/api/user/update/${currentUser._id}`, {
+      const res = await fetch(`/api/user/update/${currentUser._id}`, {
         credentials: "include",
         method: 'POST',
         headers: {
@@ -112,7 +112,7 @@ export default function Profile() {
   const handleDeleteUser = async () => {
     try {
       dispatch(deleteUserStart());
-      const res = await fetch(`http://localhost:3000/api/user/delete/${currentUser._id}`, {
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
         method: 'DELETE',
         credentials: "include"
       });
@@ -129,7 +129,7 @@ export default function Profile() {
   const handleSignOut = async() =>{
     try {
       dispatch(signOutUserStart())
-      const res = await fetch('http://localhost:3000/api/auth/signOut')
+      const res = await fetch('/api/auth/signOut')
       const data = await res.json();
       if(data.success === false){
         dispatch(signOutUserFailure(data.message));
@@ -142,7 +142,7 @@ export default function Profile() {
   const handleShowListings = async () => {
     try {
       setShowListingError(false);
-      const res = await fetch(`http://localhost:3000/api/user/listings/${currentUser._id}` ,{
+      const res = await fetch(`/api/user/listings/${currentUser._id}` ,{
         credentials : 'include' ,
       });
       const data = await res.json();
@@ -158,7 +158,7 @@ export default function Profile() {
   };
   const handleListingDelete = async (listingId) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/listing/delete/${listingId}`, {
+      const res = await fetch(`/api/listing/delete/${listingId}`, {
         credentials :"include" ,
         method: 'DELETE',
       });
