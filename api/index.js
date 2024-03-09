@@ -10,7 +10,7 @@ import path from 'path'
 dotenv.config();
 const app = express()
 app.use(cors({
-  origin: 'https://mern-estate-hj5g.onrender.com/sign-in',
+  origin: 'https://mern-estate-hj5g.onrender.com',
   credentials: true,  // Enable credentials (cookies, authorization headers, etc.)
 }));
 
