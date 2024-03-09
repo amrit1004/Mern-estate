@@ -49,4 +49,4 @@ export default function ListingItem({ listing }) {
       </Link>
     </div>
   );
-}
+}  
