@@ -29,7 +29,7 @@ export default function Listing() {
       const fetchListing = async () =>{
        try {
         setLoading(true);
-        const res = await fetch(`/api/listing/get/${params.listingId} 
+        const res = await fetch(`http://localhost:3000/api/listing/get/${params.listingId} 
         ` ,{
           credentials : 'include' 
         }
