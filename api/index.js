@@ -7,6 +7,7 @@ import listingRouter from "./routes/listing.route.js"
 import cors from 'cors'
 import cookieParser from "cookie-parser"
 import path from 'path'
+
 dotenv.config();
 const app = express()
 app.use(cors({

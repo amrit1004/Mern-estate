@@ -40,20 +40,20 @@ export default function SignIn() {
   };
   
   return (
-    <div className='max-w-lg p-3 mx-auto'>
-      <h1 className='text-3xl font-semibold text-center my-7'>Sign In</h1>
+    <div className='p-3 mx-auto max-w-lg'>
+      <h1 className='my-7 text-3xl font-semibold text-center'>Sign In</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         <input
           type='email'
           placeholder='email'
-          className='p-3 border rounded-lg'
+          className='p-3 rounded-lg border'
           id='email'
           onChange={handleChange}
         />
         <input
           type='password'
           placeholder='password'
-          className='p-3 border rounded-lg'
+          className='p-3 rounded-lg border'
           id='password'
           onChange={handleChange}
         />
